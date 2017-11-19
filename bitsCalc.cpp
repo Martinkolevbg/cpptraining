@@ -60,4 +60,12 @@ int main()
 	if (testResultC != testSuccC) {
         cout<<"ERROR! There is a mistake with test "<<testNumC<<endl;
     }   	
+    //testD with method ( log(2) ) 
+    int testMetA = 15;
+    int testMetASucc = 4;
+    int testMetARess = calcBits(testMetA);
+
+    if (testMetARess != testMetASucc){
+       cout<<"ERROR! There is a mistake with test "<<testNumC<<endl; 
+    }
 }
