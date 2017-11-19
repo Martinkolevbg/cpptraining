@@ -23,6 +23,15 @@ int calcBitsFast(int number) {
     return bits;
 }
 
+int testCalcBits(int testNum , int testSucc){	
+	int testResult = calcBitsFast(testNum);
+	
+	if (testResult != testSucc) {
+        cout<<"ERROR! There is a mistake with test "<< testNum << endl;
+    }
+    return 0;
+}
+
 int main()
 {
     int n = 0;
@@ -34,15 +43,7 @@ int main()
 
     std::cout << "Your number needs = " << result << " bits to be written in binary."<<endl;
     
-    //testA
-    int testNum = 5;
-	int testSucc = 3;	
-	int testResult = calcBitsFast(testNum);
-	
-	if (testResult != testSucc) {
-        cout<<"ERROR! There is a mistake with test "<< testNum << endl;
-    }
-    
+    testCalcBits(5,3);
     //testB
     int testNumB = 149;
     int testSuccB = 8;
@@ -51,7 +52,7 @@ int main()
 	if (testResultB != testSuccB) {
         cout<<"ERROR! There is a mistake with test "<< testNumB << endl;
     }
-    
+
     //testC	
     int testNumC = 148;
     int testSuccC = 8;
@@ -60,6 +61,7 @@ int main()
 	if (testResultC != testSuccC) {
         cout<<"ERROR! There is a mistake with test "<<testNumC<<endl;
     }   	
+
     //testD with method ( log(2) ) 
     int testMetA = 15;
     int testMetASucc = 4;
