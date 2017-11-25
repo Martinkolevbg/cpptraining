@@ -45,9 +45,5 @@ int main() {
 	if (opr == dev){
 		cout<<a<<" : "<<b<<" = "<<(a/b);
 		}
-
-
-
-
 	return 0;
 }
