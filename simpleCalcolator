@@ -1,0 +1,53 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+int main() {
+
+	int a = 0;
+	int b = 0;
+
+	string opr;
+
+	string add = "+";
+	string sub = "-";
+	string mult = "x";
+	string dev = ":";
+
+
+
+	cout<< "Enter (+/-/x/:)"<<endl;
+		cin >> opr;
+
+   if ( (opr != add) && (opr != sub) && (opr != mult) && (opr != dev) ){
+
+        std::cout << "Error: You used Invalid operation. (Use ONLY ( +/-/x/: )"<<endl;
+    }
+	
+   else if ( (opr == add) || (opr == sub) || (opr == mult) || (opr == dev) ) {
+    
+    cout << "Enter operand 1"<<endl;
+		cin >> a;
+	cout <<"Enter operand 2"<<endl;
+		cin >>b;
+	}
+
+	if (opr == add){
+		cout<<a<<" + "<<b<<" = "<<(a+b);
+		}
+	if (opr == sub){
+		cout<<a<<" - "<<b<<" = "<<(a-b);
+		}
+	if (opr == mult){
+		cout<<a<<" x "<<b<<" = "<<(a*b);
+		}
+	if (opr == dev){
+		cout<<a<<" : "<<b<<" = "<<(a/b);
+		}
+
+
+
+
+	return 0;
+}
