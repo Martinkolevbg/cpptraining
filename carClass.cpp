@@ -1,9 +1,10 @@
 #include <iostream>
 #include <string>
-#include "carClass.h"
+//#include "Car.h"
+#include <fstream>
 
 using namespace std;
-/*
+
 class Car {
     int maxSpeed;
     int voltage;
@@ -32,7 +33,7 @@ public:
 
     }
 };
-*/
+
 void Car::hitGas()
 {
     currentSpeed++;
@@ -72,11 +73,31 @@ void Car::showPimpDashboard()
 
 int main()
 {
-    Car bibiCar(220, 12, 17, 150, 5,"Red", "polo");
-    Car gaviCar(360, 220, 20, 500, 9999,"silver","Tesla");
+  //  Car bibiCar(220, 12, 17, 150, 5,"Red", "polo");
+  //  Car gaviCar(360, 220, 20, 500, 9999,"silver","Tesla");
 
-    bibiCar.showDashboard();
-    gaviCar.showPimpDashboard();
+	ofstream cars;
+        cars.open ("cars.txt");
+        cars << "Car bibiCar(220, 12, 17, 150, 5, Red , polo)<<endl;";
+        cars << "Car gaviCar(360, 220, 20, 500, 9999, silver , Tesla)<<endl;";
+        
+        string line;
+
+		if (cars.is_open())
+		{
+		while ( getline (cars) ) // Here it is :( 
+		{
+		cout << line << '\n';
+    	}
+    	cars.close();
+  }
+
+  else cout << "Unable to open file"; 
+
+
+  //  bibiCar.showDashboard();
+  //  gaviCar.showPimpDashboard();
 
 return 0;
 }
+
