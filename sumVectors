@@ -1,0 +1,38 @@
+
+#include <iostream>
+#include <string>
+#include <vector>
+
+using namespace std;
+
+int main()
+{
+	int x;
+	double result;
+
+	std::cout << "How many elements?  ";
+	std::cin >> x;
+	std::vector<double> vector_a(x);
+	std::vector<double> vector_b(x);
+	std::vector<double> m_result(x);
+	std::cout << "Enter vector A " << x << " values: ";
+		for(int i =0 ; i < x;i++){
+		std::cin >> vector_a[i];
+		}
+	std::cout << "Enter vector B"<< x <<" values: ";
+	    for(int i = 0;i < x;i++){
+		std:cin >> vector_b[i];
+	    }
+	    
+	// some magic tricks
+	    for( int i = 0; i < x;i++){
+	        m_result[i] = vector_a[i]*vector_b[i];
+	    }
+	    for(int i = 0; i< x; i++){
+	        double res = m_result[i] + m_result[i+1];
+	        result = res;
+	    }
+	    std::cout <<"sum of all elements is: "<< result;
+
+	return 0;
+}
