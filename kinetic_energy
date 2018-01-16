@@ -1,0 +1,29 @@
+#include <iostream>
+#include <cmath>
+
+using namespace std;
+
+
+double kineticEnergy(int m, int v = 300000){
+      double ke = m * pow(v,2);
+
+        cout << ke;
+}
+
+int main()
+{   float speed = 0;
+    int mass = 0;
+    std::cout << "Enter value for mass: ";
+    std::cin >> mass;
+    std::cout<<endl<<"Enter value for speed [use 0 for speed of light]: ";
+    std::cin >> speed;
+        if(speed == 0){
+            speed = 300000;
+        }
+
+    std::cout << "Kinetic Energy =  ";
+    kineticEnergy(mass, speed);
+
+    return 0;
+
+}
