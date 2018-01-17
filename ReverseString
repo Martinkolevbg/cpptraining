@@ -1,0 +1,29 @@
+#include <iostream>
+#include <cstring>
+#include<bits/stdc++.h>
+
+using namespace std;
+
+void reverseStr(string &str){
+    int n = str.length();
+    for (int i=0; i<n/2; i++){
+       swap(str[i], str[n-i-1]);
+    }
+}
+
+
+
+int main()
+{
+   std::string text;
+   std::cout << "enter text to be reversed : ";
+   std::cin >> text;
+   reverseStr(text);
+   std::locale loc;
+  for (std::string::size_type i=0; i<text.length(); ++i)
+    std::cout << std::tolower(text[i],loc);
+  return 0;
+   cout << text;
+
+   return 0;
+}
