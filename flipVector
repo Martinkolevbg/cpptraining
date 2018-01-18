@@ -1,0 +1,24 @@
+#include <algorithm>
+#include <iostream>
+#include <string>
+#include <vector>
+
+using namespace std;
+
+int main()
+{
+	int x;
+
+	std::cout << "How many elements?  ";
+	std::cin >> x;
+	std::vector<double> vector_a(x);
+	std::cout << "Enter vector " << x << " values: ";
+		for(int i =0 ; i < x;i++){
+		std::cin >> vector_a[i];
+		}
+	std::reverse(vector_a.begin(), vector_a.end());
+	for(int i = 0 ; i < vector_a.size(); i++){
+	std::cout << vector_a[i]<<" ";
+	}
+	return 0;
+}
