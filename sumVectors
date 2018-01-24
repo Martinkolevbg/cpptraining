@@ -1,4 +1,3 @@
-
 #include <iostream>
 #include <string>
 #include <vector>
@@ -21,18 +20,17 @@ int main()
 		}
 	std::cout << "Enter vector B"<< x <<" values: ";
 	    for(int i = 0;i < x;i++){
-		std:cin >> vector_b[i];
+		    cin >> vector_b[i];
 	    }
-	    
-	// some magic tricks
-	    for( int i = 0; i < x;i++){
+	for( int i = 0; i < x;i++){
 	        m_result[i] = vector_a[i]*vector_b[i];
-	    }
-	    for(int i = 0; i< x; i++){
-	        double res = m_result[i] + m_result[i+1];
-	        result = res;
-	    }
-	    std::cout <<"sum of all elements is: "<< result;
+	}
+    
+    for (int i = 0; i< x; i++){
+         result += m_result[i];    
+    
+    }
+	    std::cout <<"Happy: "<< result;
 
 	return 0;
 }
