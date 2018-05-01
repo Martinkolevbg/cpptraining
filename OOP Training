@@ -1,0 +1,85 @@
+#include <iostream>
+#include <string> 
+#include <vector>
+
+using namespace std;
+
+class Person {
+    public:
+        int _age = 0;
+        string _name = "";
+    
+        Person(int age, string name) {
+            _age = age;
+            _name = name;
+        }
+        
+        void printPerson() {
+            cout << "Age: " << _age << endl;
+            cout << "Name: " << _name << endl;
+        }
+};
+
+class Car {
+    public:
+        string _make = "";
+        Person* _owner;
+        Person* _driver;
+    
+        Car(string make, Person* owner, Person* driver) {
+            _make = make;
+            _owner = owner;
+            _driver = driver;
+        }
+        
+        void printCar() {
+            cout << _make << endl;
+            cout << "Owner: " << _owner->_name << " " << _owner->_age << endl;
+            cout << "Driver: " << _driver->_name << " " << _driver->_age << endl;
+        }
+    
+};
+
+Person* find_chiek(string name, vector<Person*> people){
+    for (const auto& person : people) {
+	   if(name == person->_name){
+	       return person;
+	   }
+    }
+}
+
+int main() {
+    int number_of_cars;
+    int number_of_people;
+    int age;
+    string name;
+    string owner_name;
+    string make;
+    string driver_name;
+    vector<Person*> people; 
+    vector<Car*> cars;
+    
+    cin >> number_of_people;
+    for (int i = 0;i < number_of_people ;i++){
+        cin >> name >> age;
+        people.push_back(new Person(age,name));
+    }
+    
+    for (int i = 0;i < people.size();i++){
+        people[i]->_age++;
+        
+    }
+    
+	cin >> number_of_cars;
+	for (int i = 0;i<number_of_cars;i++) {
+	    cin >> make >> owner_name >> driver_name;
+	    cars.push_back(new Car(make,find_chiek(owner_name,people),find_chiek(driver_name,people)));
+	}
+	
+	for (const auto& car : cars) {
+	    car->printCar();
+	    cout << endl;
+	}
+	
+	return 0;
+}
