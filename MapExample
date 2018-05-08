@@ -1,0 +1,33 @@
+#include <iostream>
+#include <fstream>
+#include <map>
+#include <string>
+
+using namespace std;
+
+
+
+int main()
+{
+    map<string, int> s;
+
+    ifstream iff;
+    iff.open("main.cpp");
+    string word;
+    while(iff >> word){
+        s[word]++;
+    }
+    iff.close();
+    map<string , int>::iterator p;
+    for ( p = s.begin(); p != s.end(); p++){
+        cout << p->first << " " << p->second <<endl;
+        cout << s.size() << endl;
+
+    }
+
+
+
+
+
+    return 0;
+}
