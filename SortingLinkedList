@@ -1,0 +1,54 @@
+#include <iostream>
+#include <list>
+#include <string>
+
+using namespace std;
+typedef list<int> ::iterator iint;
+
+void swap(iint px, iint py){
+    int temp = *px;
+    *px = *py;
+    *py = temp;
+}
+
+iint min_position(list<int>& a, iint from, iint to){
+    iint min_pos = from;
+    for(iint i = ++from; i != to; i ++){
+        if (*i < *min_pos) min_pos =i;
+    }
+    return min_pos;
+}
+
+void ssort(list<int>& a){
+    iint next;
+    for(next = a.begin();next != --a.end();next++){
+        iint min_pos = min_position(a,next,a.end());
+        if (min_pos != next)
+            swap(min_pos,next);
+    }
+}
+
+
+int main()
+{
+    list<int>l;
+    l.push_back(20);
+    l.push_back(14);
+    l.push_back(2);
+    l.push_back(11);
+    l.push_back(8);
+
+    for(iint pos = l.begin(); pos != l.end();pos++){
+        cout << *pos << " ";
+    }
+    cout <<endl<<endl;
+
+    ssort(l);
+
+
+    for(iint pos = l.begin(); pos != l.end();pos++){
+        cout << *pos << " ";
+    }
+
+    return 0;
+}
