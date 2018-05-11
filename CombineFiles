@@ -1,0 +1,38 @@
+#include <iostream>
+#include <fstream>
+#include <string>
+
+using namespace std;
+
+int main(int argc, char* argv[])
+{
+
+    ifstream file1(argv[0]);
+    ifstream file2(argv[1]);
+    ifstream file3(argv[2]);
+    ofstream book_l ("book.txt");
+    string line;
+
+    while (getline(file1, line)){
+        book_l << line << '\n';
+    }
+
+    file1.close();
+
+    while (getline(file2, line)){
+        book_l << line << '\n';
+    }
+
+    file2.close();
+
+    while (getline(file3, line)){
+        book_l << line << '\n';
+    }
+
+    file3.close();
+    book_l.close();
+
+    cout << " All done!" << endl;
+
+return 0;
+}
