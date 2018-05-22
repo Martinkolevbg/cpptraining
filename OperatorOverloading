@@ -1,0 +1,22 @@
+#include <iostream>
+
+using namespace std;
+
+class Fraction
+{
+public:
+    int n, d;
+    Fraction() {d= 1; n = 0;}
+    friend ostream& operator<<(ostream& out, const Fraction& f);
+};
+
+ostream& operator<<(ostream& out, const Fraction& f)
+{
+ out << f.n << "/" << f.d;
+ return out;
+}
+
+int main()
+{
+    return 0;
+}
