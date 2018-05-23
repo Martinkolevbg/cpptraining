@@ -1,0 +1,76 @@
+#include <list>
+#include <iostream>
+#include <vector>
+using namespace std;
+typedef list<int>::iterator iint;
+
+class Empoyee
+{
+public:
+    Empoyee(int sal)
+    {
+        salary = sal;
+    }
+    int salary;
+};
+
+void swap(iint px, iint py)
+{  int temp = *px;
+   *px = *py;
+   *py = temp;
+}
+
+iint min_position(list<int>& a, iint from, iint to)
+{  iint min_pos = from;
+   for (iint i = ++from; i != to; i++)
+   {
+	if (*i < *min_pos) min_pos = i;
+   }
+   return min_pos;
+}
+
+void ssort(list<int>& a)
+{  iint next;
+   for (next = a.begin(); next != --a.end(); next++)
+   {
+    	iint min_pos = min_position(a, next, a.end());
+  	if (min_pos  != next)
+     	       swap(min_pos, next);
+   }
+}
+
+int main() {
+    Empoyee pesho(1000);
+    Empoyee gosho(999);
+    Empoyee sasho(232);
+    Empoyee peshka(2332);
+    Empoyee goshka(10000);
+    Empoyee sashka(3232);
+
+    vector<int> salaries;
+
+    salaries.push_back(pesho.salary);
+    salaries.push_back(gosho.salary);
+    salaries.push_back(sasho.salary);
+    salaries.push_back(peshka.salary);
+    salaries.push_back(goshka.salary);
+    salaries.push_back(sashka.salary);
+
+	list<int> l;
+
+    for(int i = 0; i < salaries.size();i++){
+        l.push_back(salaries[i]);
+    }
+
+	for (iint pos = l.begin();	pos != l.end(); pos++)
+        		cout << *pos << " ";
+	cout << endl;
+
+	ssort(l);
+
+	for (iint pos = l.begin();	pos != l.end(); pos++)
+         	cout << *pos << " ";
+	cout << endl;
+
+	return 0;
+}
