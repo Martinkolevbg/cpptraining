@@ -1,0 +1,56 @@
+#include <iostream>
+#include <set>
+
+using namespace std;
+
+set<int> my_set_union(set<int> a, set<int> b){
+    set<int> c;
+    c.insert(a.begin(), a.end());
+    c.insert(b.begin(), b.end());
+    return c;
+}
+
+set<int> my_set_intersection(set<int> a, set<int> b){
+    set<int> c;
+    set<int>::iterator iter_a;
+    set<int>::iterator iter_b;
+    for (iter_a = a.begin(); iter_a != a.end(); ++iter_a){
+        for (iter_b = b.begin(); iter_b != b.end(); ++iter_b){
+            if (*iter_a == *iter_b){
+                c.insert(*iter_a);
+            }
+        }
+    }
+return c;
+}
+
+int main()
+{
+    set<int>::iterator iter_a;
+    set<int>::iterator iter_b;
+    std::set<int> a;
+    std::set<int> b;
+    std::set<int> c;
+    std::set<int> d;
+
+    for(int i=1;i<11;i++){
+        a.insert(i);
+    }
+        for(int i=5;i<16;++i){
+        b.insert(i);
+    }
+
+    c = my_set_union(a,b);
+
+    cout << "Set union : ";
+    for(iter_a = c.begin(); iter_a != c.end(); ++iter_a){
+        cout<<(*iter_a)<<" ";
+    }
+    cout <<endl<<endl;
+    cout << "Set intersection : ";
+    d = my_set_intersection(a,b);
+        for(iter_b = d.begin(); iter_b != d.end(); ++iter_b){
+        cout<<(*iter_b)<<" ";
+    }
+    return 0;
+}
