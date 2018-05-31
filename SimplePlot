@@ -1,0 +1,106 @@
+#include <iostream>
+#include <fstream>
+#include <vector>
+#include <windows.h>
+#include <chrono>
+#include <thread>
+#include <iostream>
+
+using namespace std;
+
+using namespace std::this_thread; // sleep_for, sleep_until
+using namespace std::chrono; // nanoseconds, system_clock, seconds
+
+class Vector {
+public:
+  float x, y;
+  Vector():x(0),y(0){}
+  Vector(float _x, float _y):x(_x),y(_y){}
+  Vector operator+(Vector& a){return Vector(x+a.x, y + a.y); }
+  float operator*(Vector& a){return (x * a.x + y * a.y); }
+  Vector operator*(float a){return Vector(a*x, a*y); }
+  friend ostream& operator<<(ostream& , const Vector& );
+};
+
+ostream& operator<<(ostream& out, const Vector& a) {
+  out << "(" << a.x << ", " << a.y << ")" ; return out;
+}
+
+class Particle{
+public:
+  Particle(Vector _r) : r(_r), v( Vector() ), a(Vector()),
+   		 width(0), height(0), mass(1.) { }
+
+  Vector r, v, a;
+
+  float width, height, mass;
+
+  void set_v(Vector _v){
+	v = _v;
+  }
+
+  void apply_force(Vector force){
+	Vector acc = force * ( 1./mass );
+	a = a + acc ;
+  }
+
+  void set_boundary(float _w, float _h){
+	width = _w;
+	height = _h;
+  }
+
+  void update(){
+
+	v = v + a;
+	r = r + v;
+	check_boundary();
+  }
+
+  void check_boundary(){
+	if ( !(width || height) ) return;
+
+	if (r.x > width) {
+  	r.x = width;
+  	v.x *= -1;
+	} else if ( r.x < 0 ) {
+  	v.x *= -1;
+  	r.x = 0;
+	}
+
+	if (r.y > height) {
+  	v.y *= -1;
+  	r.y = height;
+	} else if ( r.y < 0 ) {
+  	v.y *= -1;
+  	r.y = 0;
+	}
+  }
+
+  friend ostream& operator<<(ostream& , const Particle& );
+};
+
+ostream& operator<<(ostream& out, const Particle& a) {
+  out << "(" << a.r.x << ", " << a.r.y << ")" ; return out;
+}
+
+
+int main() {
+    
+    Particle p ( Vector(0, 300) );
+    p.set_boundary(640, 360);
+    p.set_v( Vector(5, 0) );
+
+    p.apply_force( Vector(0, -0.5) );
+
+    ofstream outf("tracks");
+
+    while(true){
+        sleep_for(seconds(1));
+        p.update();
+        outf << p << endl;
+    }
+
+    outf.close();
+
+    return 0;
+}
