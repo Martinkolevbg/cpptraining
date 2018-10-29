@@ -1,0 +1,81 @@
+#include <iostream>
+
+using namespace std;
+
+const int NUM = 1000;
+
+template <typename O>
+
+class ArrayStack
+{
+private:
+    int n;
+    O* arr;
+    int t;
+public:
+    ArrayStack(int cap = NUM)
+    {
+     n = cap;
+     arr = new O[n];
+     t = - 1;
+    }
+    void push(const O& obj)
+    {
+        if(size()== n)
+        {
+            cout << "Stack Overflow!"<<endl;
+            return;
+        }
+        t++;
+        arr[t] = obj;
+    }
+    O pop()
+    {
+        if(isEmpty())
+        {
+            cout << "Stack is empty!"<<endl;
+            return 1;
+        }
+        return arr[t--];
+    }
+
+    O& top() const
+    {
+        return arr[t];
+    }
+    bool isEmpty()const
+    {
+        return (t<0);
+    }
+    int size()
+    {
+        return (t+1);
+    }
+    void print()
+    {
+        while(!isEmpty())
+        {
+            cout << top();
+            pop();
+        }
+
+    }
+};
+
+int main()
+{
+    int k= 0;
+    cin >> k;
+    ArrayStack<int> obj;
+
+    do {
+obj.push(k % 2);
+k= k / 2;
+}
+while (k);
+obj.print();
+
+
+
+    return 0;
+}
