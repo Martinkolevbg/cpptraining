@@ -5,10 +5,7 @@ using namespace std;
 
 int main()
 {
-	int a = 0;
-	int b = 0;
-	int c = 0;
-	
+	int a,b,c;
 	cout << "Enter Vlue a and b\n";
 	cin >> a >> b;
 	c = a / b;
