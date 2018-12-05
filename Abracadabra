@@ -1,0 +1,58 @@
+#include <iostream>
+#include <string>
+#include <sstream>
+using namespace std;
+ 
+void swap(char& a, char& b) {
+    char temp = a;
+    a = b;
+    b = temp;
+}
+ 
+void reverse(string& a, int x, int y) {
+    int i, j, k, c;
+    for (c = ((y - x) / 2) + 1, k = x, j = y, i = 0; i < c; i++, j--, k++) {
+        swap(a[k], a[j]);
+    }
+}
+ 
+void reverseShift(string& a, int k, int n) {
+    reverse(a, 0, k - 1);
+    reverse(a, k, n - 1);
+    reverse(a, 0, n - 1);
+}
+ 
+void shift(string& a, int k, int n) {
+    if (k == 0 or n == 0) return;
+    else if (n <= k * 2) {
+        reverseShift(a, k, n);
+        return;
+    }
+    for (int i = 0; i < k; i++) {
+        swap(a[i], a[(n - k + i) % n]);
+    }
+    shift(a, k, n - k);
+    return;
+}
+ 
+int main() {
+    int n, k;
+    string nums, line;
+    while (getline(cin, line)) {
+        getline(cin, nums);
+        istringstream is(nums);
+        n = line.size();
+        string curr_line;
+        while (is >> k or !is.eof()) {
+            curr_line = line;
+            if (0 != n) shift(curr_line, k % n, n);
+            int i = 0;
+            while (i < 10 and i < curr_line.size()) {
+                cout << curr_line[i];
+                ++i;
+            }
+            cout << endl;
+        }
+    }
+    return 0;
+}
